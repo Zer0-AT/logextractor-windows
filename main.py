@@ -9,16 +9,20 @@ output_file = 'output-'+time.strftime("%Y%m%d-%H%M%S")+'.txt'
 entries = set()
 
 # Regex erlaubt Buchstaben, Zahlen, Unterstrich, Punkt, Bindestrich, Umlaute, ß, ...
-pattern = re.compile(r"im Besitz von ([\w\.\- äöüÄÖÜß]+) auf ([\w\.\- äöüÄÖÜß]+) wurde auf ([\w\.\- äöüÄÖÜß]+) über Port")
+pattern = re.compile(r"im Besitz von ([\w\.\- $äöüÄÖÜß]+) auf ([\w\.\- $äöüÄÖÜß]+) wurde auf ([\w\.\- $äöüÄÖÜß]+) über Port")
 
 # Datei lesen und Zeilen parsen
 with open(input_file, 'r', encoding='utf-8') as f:
+    print(f"User | Client | Printer")
+    matches = 0
     for line in f:
         match = pattern.search(line)
         if match:
             user, pc, printer = match.groups()
             entries.add(f"{user} | {pc} | {printer}")
-            print(f"User: {user} | Client: {pc} | Printer: {printer}")
+            print(f"{user} | {pc} | {printer}")
+            matches += 1
+    print(f"\n\n{matches} Einträge gefunden.")
 
 # Ausgabe schreiben
 with open(output_file, 'w', encoding='utf-8') as f:
