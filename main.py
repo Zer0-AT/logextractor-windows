@@ -1,9 +1,14 @@
 import re
 import time
+import os
 
 # Input- und Output-Dateien
 input_file = 'av_logexport-250408-2_details.log'
-output_file = 'output-'+time.strftime("%Y%m%d-%H%M%S")+'.txt'
+output_dirname = 'output'
+output_filename = 'output-'+time.strftime("%Y%m%d-%H%M%S")+'.txt'
+output_file = os.path.join(output_dirname, output_filename)
+
+os.makedirs(output_dirname, exist_ok=True)
 
 # Set für eindeutige Kombinationen
 entries = set()
