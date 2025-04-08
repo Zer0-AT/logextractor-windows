@@ -2,14 +2,14 @@ import re
 import time
 
 # Input- und Output-Dateien
-input_file = 'av_logexport-250408-1_details.log'
+input_file = 'av_logexport-250408-2_details.log'
 output_file = 'output-'+time.strftime("%Y%m%d-%H%M%S")+'.txt'
 
 # Set für eindeutige Kombinationen
 entries = set()
 
-# Regex erlaubt Buchstaben, Zahlen, Unterstrich, Punkt, Bindestrich, Umlaute, ß
-pattern = re.compile(r"im Besitz von ([\w\.\-äöüÄÖÜß]+) auf ([\w\.\-äöüÄÖÜß]+) wurde auf ([\w\.\-äöüÄÖÜß]+)")
+# Regex erlaubt Buchstaben, Zahlen, Unterstrich, Punkt, Bindestrich, Umlaute, ß, ...
+pattern = re.compile(r"im Besitz von ([\w\.\- äöüÄÖÜß]+) auf ([\w\.\- äöüÄÖÜß]+) wurde auf ([\w\.\- äöüÄÖÜß]+) über Port")
 
 # Datei lesen und Zeilen parsen
 with open(input_file, 'r', encoding='utf-8') as f:
