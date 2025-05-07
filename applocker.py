@@ -3,7 +3,7 @@ import time
 import os
 
 # Input- und Output-Dateien
-input_file = 'wcex_250429.log'
+input_file = 'wcex_250507.log'
 output_dirname = 'output'
 output_filename = 'output-applocker-'+time.strftime("%Y%m%d-%H%M%S")+'.txt'
 output_file = os.path.join(output_dirname, output_filename)
@@ -19,7 +19,7 @@ entries = set()
 
 # Regex erlaubt Buchstaben, Zahlen, Unterstrich, Punkt, Bindestrich, Umlaute, ß, ...
 pattern = re.compile(
-    rf"Benutzer:.*?(.*?)\n.*?<Computer>(.*?)\b{re.escape(domain)}\b.*?<PolicyName>(.*?)</PolicyName>.*?<FilePath>(.*?)</FilePath>",
+    rf"<User>(.*?)</User>.*?<Computer>(.*?)\b{re.escape(domain)}\b.*?<PolicyName>(.*?)</PolicyName>.*?<FilePath>(.*?)</FilePath>",
     re.DOTALL
 )
 # Datei lesen und Zeilen parsen
